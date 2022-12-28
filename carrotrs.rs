@@ -1,5 +1,4 @@
-use std::fs;
-use std::env;
+use std::{fs, env};
 
 fn main() {
     let args: Vec<String> = env::args().collect();
