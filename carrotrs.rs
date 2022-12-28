@@ -24,21 +24,21 @@ fn main() {
 }
 
 #[allow(unused_must_use)]
-#[allow(unused_variables)]
 fn make_proj(path: &String, ext: &String, git: bool) {
     let new_path = format!("{}/src", path);
-    let other_path = format!("{}", new_path);
-    let filedir = format!("{}/main.{}", new_path, ext);
+    let filedir = format!("{}/main.{}", &new_path, ext);
     println!("{}", filedir);
-    println!("{}", new_path);
-    fs::create_dir_all(new_path).expect("Failed to create");
+    println!("{}", &new_path);
+    fs::create_dir_all(&new_path).expect("Failed to create");
     fs::File::create(filedir).expect("Failed to create");
     println!("base files made!");
 
     if git == true {
-        let readme = format!("{}/README.md", other_path);
-        fs::File::create(readme);
-        let ignore = format!("{}/.gitignore", other_path);
+        let readme_data = "# Project Name!\n\nCool Project Description";
+        let readme = format!("{}/README.md", &new_path);
+        fs::File::create(&readme);
+        fs::write(readme, readme_data).expect("Failed to write");
+        let ignore = format!("{}/.gitignore", &new_path);
         fs::File::create(ignore);
         println!("GitHub Files made!");
     }
