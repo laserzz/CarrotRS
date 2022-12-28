@@ -3,7 +3,7 @@ use std::{fs, env};
 fn main() {
     let args: Vec<String> = env::args().collect();
 
-    if args.iter().len() < 3 {
+    if args.iter().len() < 3 && args[1] != "help" {
         panic!("invalid number of arguments");
     }
 
