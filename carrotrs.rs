@@ -3,7 +3,12 @@ use std::env;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    let mut git;
+
+    if args.iter().len() < 3 {
+        panic!("invalid number of arguments");
+    }
+
+    let mut git = true;
 
     if args[1] == "help" {
         println!("carrotrs <path> <extension>");
@@ -11,9 +16,7 @@ fn main() {
         return;
     }
 
-    if args.contains(&"--github".to_string()) {
-        git = true;
-    } else {
+    if !args.contains(&"--github".to_string()) {
         git = false;
     }
 
